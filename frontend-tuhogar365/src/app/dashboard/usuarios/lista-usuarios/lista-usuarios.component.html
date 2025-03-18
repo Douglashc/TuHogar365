@@ -1,0 +1,106 @@
+<section class="content">
+  <div class="content-block">
+    <div class="block-header">
+      <!-- breadcrumb -->
+      <app-breadcrumb [title]="'Usuarios'" [items]="['Inicio']" [active_item]="'Usuarios'">
+      </app-breadcrumb>
+    </div>
+
+    <div class="row clearfix">
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="card">
+          <div class="header">
+            <h2>
+              <strong>Lista de </strong> Usuarios
+            </h2>
+          </div>
+          <div class="body">
+            <div class="materialTableHeader">
+              <div class="left">
+                <ul class="header-buttons-left ms-0">
+                  <li class="tbl-search-box">
+                    <label for="search-input">
+                      <i class="material-icons search-icon">search</i>
+                    </label>
+                    <input placeholder="Buscador" (keyup)="applyFilters($event)" type="text" #filter class="browser-default search-field"
+                      aria-label="Search box">
+                  </li>
+                </ul>
+              </div>
+              <div class="right">
+                <ul class="tbl-export-btn">
+                  <li class="tbl-header-btn">
+                    <div class="m-l-10" matTooltip="AÑADIR">
+                      <button mat-raised-button color="primary" (click)="create()">
+                        <mat-icon class="col-white">add</mat-icon>
+                        Nuevo Registro
+                      </button>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="table-responsive mt-3">
+              <table mat-table [dataSource]="paginado" class="w-100">
+                <ng-container matColumnDef="Nº">
+                  <th mat-header-cell *matHeaderCellDef> Nº </th>
+                  <td mat-cell *matCellDef="let i = index">
+                    {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Nombre Completo">
+                  <th mat-header-cell *matHeaderCellDef> Nombre Completo </th>
+                  <td mat-cell *matCellDef="let element"> {{element.nombre_completo}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Nombre de Usuario">
+                  <th mat-header-cell *matHeaderCellDef> Nombre de Usuario </th>
+                  <td mat-cell *matCellDef="let element"> {{element.username}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Email">
+                  <th mat-header-cell *matHeaderCellDef> Correo Electrónico </th>
+                  <td mat-cell *matCellDef="let element"> {{element.email}} </td>
+                </ng-container>
+                <ng-container matColumnDef="Habilitado">
+                  <th mat-header-cell *matHeaderCellDef> Habilitado </th>
+                  <td mat-cell *matCellDef="let element">
+                    <mat-slide-toggle [id]="element.id" [checked]="!!element.habilitado" (change)="enableUser(element.id)"></mat-slide-toggle>
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Rol">
+                  <th mat-header-cell *matHeaderCellDef> Rol </th>
+                  <td mat-cell *matCellDef="let element">
+                    @if (element.rol_id == null) {
+                      <div>
+                        <span class="badge badge-solid-purple">No tiene Rol</span>
+                      </div>
+                    }
+                    @if (element.rol_id != null) {
+                      <div>
+                        <span class="badge badge-solid-green">{{element.rol.display_name}}</span>
+                      </div>
+                    }
+                  </td>
+                </ng-container>
+                <ng-container matColumnDef="Acciones">
+                  <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                  <td mat-cell *matCellDef="let element">
+                    <button mat-icon-button color="primary" class="me-1" (click)="editar(element.id)">
+                      <mat-icon matSuffix>mode</mat-icon>
+                    </button>
+                    <button mat-icon-button color="warn" (click)="deleteUser(element.id)">
+                      <mat-icon matSuffix>delete</mat-icon>
+                    </button>
+                  </td>
+                </ng-container>
+
+                <tr mat-header-row *matHeaderRowDef="nombreColumnas"></tr>
+                <tr mat-row *matRowDef="let row; columns: nombreColumnas;"></tr>
+              </table>
+              <mat-paginator [pageSizeOptions]="[20, 10, 5]" showFirstLastButtons></mat-paginator>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,20 @@
+.fc-event-custom-content {
+    display: flex;
+    flex-direction: column; /* Alinea el contenido en columnas */
+    text-align: left;
+  }
+  
+  .fc-event-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .fc-event-details {
+    font-size: 0.9em;
+    color: gray;
+  }
+  
+  .fc-event-time {
+    font-size: 0.8em;
+    color: darkgray;
+  }

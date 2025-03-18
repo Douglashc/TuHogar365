@@ -1,0 +1,86 @@
+<div class="addContainer">
+    <div class="modalHeader">
+        <div class="modal-about">
+            {{ data?.title }}
+        </div>
+        <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
+    <div mat-dialog-content>
+        <form class="register-form m-4" [formGroup]="form" (ngSubmit)="registerReserva()">
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Cliente</mat-label>
+                        <mat-select formControlName="cliente_id" required>
+                            <mat-option *ngFor="let cliente of clientes" [value]="cliente.id">
+                                {{ cliente.nombre }} {{ cliente.apellido }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('cliente_id')?.hasError('required')">
+                            Seleccionar un cliente es obligatorio
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Servicio</mat-label>
+                        <mat-select formControlName="servicio_id" required>
+                            <mat-option *ngFor="let servicio of servicios" [value]="servicio.id">
+                                {{ servicio.nombre }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('servicio_id')?.hasError('required')">
+                            Seleccionar un servicio es obligatorio
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Fecha de Reserva</mat-label>
+                        <input matInput formControlName="fecha_reserva" type="date" required>
+                        <mat-error *ngIf="form.get('fecha_reserva')?.hasError('required')">
+                            La fecha de reserva es requerida
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Hora de Inicio</mat-label>
+                        <input matInput formControlName="fecha_hora_inicio" type="datetime-local" required>
+                        <mat-error *ngIf="form.get('fecha_hora_inicio')?.hasError('required')">
+                            La hora de inicio es requerida
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Hora de Fin</mat-label>
+                        <input matInput formControlName="fecha_hora_fin" type="datetime-local" required>
+                        <mat-error *ngIf="form.get('fecha_hora_fin')?.hasError('required')">
+                            La hora de fin es requerida
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <div class="example-button-row">
+                        <button type="submit" [disabled]="!form.valid || loading" [class.auth-spinner]="loading"
+                            mat-raised-button color="primary">Guardar</button>
+                        <button type="button" mat-raised-button color="warn" (click)="close()"
+                            tabindex="-1">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

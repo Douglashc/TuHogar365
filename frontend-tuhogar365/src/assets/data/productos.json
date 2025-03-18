@@ -1,0 +1,93 @@
+{
+    "productos": [
+      {
+        "id": 1,
+        "imagen": "",
+        "codigo": "PROD001",
+        "categoria": "medicamentos",
+        "unidad": "unidad",
+        "nombre": "vacuna antirrábica",
+        "precio_unit": 25.50,
+        "stock": 150,
+        "habilitado": 1
+      },
+      {
+        "id": 2,
+        "imagen": "",
+        "codigo": "PROD002",
+        "categoria": "alimentos",
+        "unidad": "kilogramo",
+        "nombre": "alimento balanceado para perros",
+        "precio_unit": 10.75,
+        "stock": 300,
+        "habilitado": 1
+      },
+      {
+        "id": 3,
+        "imagen": "",
+        "codigo": "PROD003",
+        "categoria": "higiene",
+        "unidad": "litro",
+        "nombre": "shampoo para perros",
+        "precio_unit": 15.00,
+        "stock": 50,
+        "habilitado": 1
+      },
+      {
+        "id": 4,
+        "imagen": "",
+        "codigo": "PROD004",
+        "categoria": "accesorios",
+        "unidad": "unidad",
+        "nombre": "collar antipulgas",
+        "precio_unit": 12.30,
+        "stock": 200,
+        "habilitado": 0
+      },
+      {
+        "id": 5,
+        "imagen": "",
+        "codigo": "PROD005",
+        "categoria": "instrumental médico",
+        "unidad": "caja",
+        "nombre": "jeringas desechables",
+        "precio_unit": 5.00,
+        "stock": 500,
+        "habilitado": 1
+      },
+      {
+        "id": 6,
+        "imagen": "",
+        "codigo": "PROD006",
+        "categoria": "medicamentos",
+        "unidad": "botella",
+        "nombre": "antibiótico para gatos",
+        "precio_unit": 18.20,
+        "stock": 120,
+        "habilitado": 1
+      },
+      {
+        "id": 7,
+        "imagen": "",
+        "codigo": "PROD007",
+        "categoria": "alimentos",
+        "unidad": "kilogramo",
+        "nombre": "alimento para gatos",
+        "precio_unit": 8.60,
+        "stock": 250,
+        "habilitado": 0
+      },
+      {
+        "id": 8,
+        "imagen": "",
+        "codigo": "PROD008",
+        "categoria": "equipos médicos",
+        "unidad": "unidad",
+        "nombre": "monitor de signos vitales",
+        "precio_unit": 750.00,
+        "stock": 10,
+        "habilitado": 1
+      }
+    ]
+  }
+  

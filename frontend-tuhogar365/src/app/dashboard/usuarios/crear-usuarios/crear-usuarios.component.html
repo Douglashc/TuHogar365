@@ -1,0 +1,120 @@
+<div class="addContainer">
+  <div class="modalHeader">
+    <div class="editRowModal">
+      <div class="modalHeader clearfix">
+        <div class="modal-about">
+          {{ data?.title }}
+        </div>
+      </div>
+    </div>
+    <button mat-icon-button (click)="dialogRef.close()" class="modal-close-button" aria-label="Close dialog">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+  <div mat-dialog-content>
+    <form class="register-form m-4" [formGroup]="form" (ngSubmit)="registerUser()">
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input matInput formControlName="username" required>
+            <mat-icon matSuffix>person</mat-icon>
+            @if (form.get('username')?.hasError('required')) {
+            <mat-error>
+              Nombre de usuario es requerido
+            </mat-error>
+            }
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput formControlName="password" [type]="hide ? 'password' : 'text'">
+            <mat-icon matSuffix (click)="hide = !hide">
+              {{hide ? 'visibility_off' : 'visibility'}}
+            </mat-icon>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Correo Electrónico</mat-label>
+            <input matInput formControlName="email">
+            <mat-icon matSuffix>email</mat-icon>
+            <mat-error *ngIf="form.get('email')?.hasError('required') || form.get('email')?.touched">
+              Por favor ingrese un correo electrónico valido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Nombre</mat-label>
+            <input matInput formControlName="nombres" required>
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-error *ngIf="form.get('nombres')?.hasError('required')">
+              Nombre es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Apellidos</mat-label>
+            <input matInput formControlName="apellidos" required>
+            <mat-icon matSuffix>face</mat-icon>
+            <mat-error *ngIf="form.get('apellidos')?.hasError('required')">
+              Apellidos es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Cedula de Identidad</mat-label>
+            <input matInput formControlName="ci" required>
+            <mat-icon matSuffix>badge</mat-icon>
+            <mat-error *ngIf="form.get('ci')?.hasError('required')">
+              El número de cedula de identidad es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Celular</mat-label>
+            <input matInput formControlName="celular" required>
+            <mat-icon matSuffix>phone</mat-icon>
+            <mat-error *ngIf="form.get('celular')?.hasError('required')">
+              El número de celular es requerido
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Roles</mat-label>
+            <mat-select formControlName="rol_id">
+              <mat-option value="">Ninguno</mat-option>
+              @for (item of roles; track item) {
+              <mat-option [value]="item.id">{{item.display_name}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <div class="example-button-row">
+            <button type="submit" [disabled]="!form.valid || loading" [class.auth-spinner]="loading" mat-raised-button
+              color="primary">Guardar</button>
+            <button type="button" mat-raised-button color="warn" (click)="close()" tabindex="-1">Cancelar</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

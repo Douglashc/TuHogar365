@@ -1,0 +1,117 @@
+<form [formGroup]="form">
+    <div class="row">
+      @if (tipo!='r_venta'&& tipo!='v_bobina' && tipo!='pagos') {
+        <div [ngClass]="tipo=='ingreso' && tipo=='v_sucursal' && tipo=='reportes'&&tipo!='dashboard' &&tipo!='bobina' ?'col-md-4':tipo!='ingreso'&& tipo!='dashboard'&&tipo!='bobina'?'col-md-3':'col-md-12'" *appHasRoles="['administrador']" >
+          <mat-form-field class="example-full-width" appearance="outline" >
+              <mat-label>Sucursales</mat-label>
+              <mat-select formControlName="sucursal_id"  >
+                <mat-option [value]="0" >Todos</mat-option>
+                @for (item of sucursales; track item) {
+                    <mat-option  [value]="item.id">{{item.nombre}}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+      </div>
+      }
+      @if (tipo=='bobina' || tipo=='v_bobina' || tipo!='pagos' && tipo!='reporte' && tipo!='venta' && tipo!='proforma' && tipo!='ingreso' && tipo!='v_sucursal' && tipo!='r_venta' && tipo!='dashboard'  ) {
+        
+        <div class="col-md-12">
+          <mat-form-field class="example-full-width" appearance="outline" #singleSelect >
+            <mat-label>Ingresos</mat-label>
+            <mat-select formControlName="orden">
+              <mat-option [value]="0"> Ver todo </mat-option>
+              @for (item of ingresos; track item) {                    
+                <mat-option [value]="item.nro"> {{item.nro}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      }
+
+        @if(tipo=='reporte'&& tipo!='r_venta' || tipo=='v_bobina' || tipo=='pagos' ){
+            <div class="col-md-3">
+              <mat-form-field class="example-full-width" appearance="outline" #singleSelect >
+                <mat-label>Clientes</mat-label>
+                <mat-select formControlName="cliente_id" >
+                  <mat-option>
+                    <ngx-mat-select-search placeholderLabel="Buscar Cliente"     noEntriesFoundLabel="no se encontraron resultados"
+                    [formControl]="textInput" [searching]="searching" ></ngx-mat-select-search>
+                  </mat-option>
+                  <mat-option [value]="0"> Ver todo</mat-option>
+                  @for (item of clientes; track item) {
+                    
+                    <mat-option [value]="item.id"> {{item.razon_social}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+            </div>
+        }
+        @if (tipo!='ingreso' && tipo!="dashboard" && tipo!='v_sucursal' && tipo!='r_venta' && tipo!='bobina' && tipo!='v_bobina'&& tipo!='pagos' ) {
+          <div  [ngClass]="tipo=='ingreso'&& tipo=='v_sucursal'?'col-md-4':'col-md-3'" *appHasRoles="['administrador']" >
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Seleccionar Usuario</mat-label>
+              <mat-select formControlName="user_id">
+                  <mat-option>
+                    <ngx-mat-select-search placeholderLabel="Buscar Usuarios"     noEntriesFoundLabel="no se encontraron resultados"
+                    [formControl]="textInput1" [searching]="searching1" ></ngx-mat-select-search>
+                  </mat-option>
+                <mat-option [value]="'0'" selected>Todos</mat-option>
+                <mat-option *ngFor="let item of usuarios" [value]="item.id">
+                  {{item.nombre_completo}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        }
+        @if (tipo!="dashboard" && tipo!='bobina'  ) {
+          <div [ngClass]="tipo=='ingreso'&& tipo=='v_sucursal'?'col-md-4':'col-md-3'">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Fecha Inicio</mat-label>
+                <input
+                  matInput
+                  formControlName="fecha_inicio" [matDatepicker]="picker"
+                />
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                          <mat-datepicker #picker></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div [ngClass]="tipo=='ingreso'&& tipo=='v_sucursal'?'col-md-4':'col-md-3'">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Fecha Fin</mat-label>
+                <input
+                  matInput
+                  formControlName="fecha_fin" [matDatepicker]="picker1"
+                />
+                <mat-datepicker-toggle matIconSuffix [for]="picker1"></mat-datepicker-toggle>
+                          <mat-datepicker #picker1></mat-datepicker>
+              </mat-form-field>
+            </div>
+            <div  *ngIf="tipo!='v_bobina' && tipo!='venta' && tipo!='proforma' && tipo!='ingreso' && tipo!='reporte' && tipo!='r_venta'  "  [ngClass]="tipo=='ingreso' && tipo=='v_sucursal' ?'col-md-4':'col-md-3'">
+              <mat-form-field class="example-full-width" appearance="outline">
+                <mat-label>Seleccionar Usuario</mat-label>
+                <mat-select formControlName="vendedor_id">
+                  <mat-option [value]="'0'" selected>Todos</mat-option>
+                  <mat-option *ngFor="let item of vendedores" [value]="item.id">
+                    {{item.nombre_completo}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            
+        }
+          <div *ngIf="tipo=='venta'"  class="col-md-3" >
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>Seleccionar Estado</mat-label>
+              <mat-select formControlName="estado">
+                <mat-option value="" >Ninguno</mat-option>
+                <mat-option [value]="'COTIZACION'">COTIZACION</mat-option>
+                <mat-option [value]="'PEDIDO'">PEDIDO</mat-option>
+                <mat-option [value]="'PROCESO'">PROCESO</mat-option>
+                <mat-option [value]="'FINALIZADO'">FINALIZADO</mat-option>
+                <mat-option [value]="'DESPACHADO'">DESPACHADO</mat-option>
+                <mat-option [value]="'ANULADO'" selected>ANULADO</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+    </div>
+</form>

@@ -1,0 +1,54 @@
+{
+    "unidades": [
+        {
+            "id": 1,
+            "nombre": "Unidad",
+            "abreviatura": "unid"
+        },
+        {
+            "id": 2,
+            "nombre": "Caja",
+            "abreviatura": "caja"
+        },
+        {
+            "id": 3,
+            "nombre": "Litro",
+            "abreviatura": "L"
+        },
+        {
+            "id": 4,
+            "nombre": "Mililitro",
+            "abreviatura": "ml"
+        },
+        {
+            "id": 5,
+            "nombre": "Gramo",
+            "abreviatura": "g"
+        },
+        {
+            "id": 6,
+            "nombre": "Kilogramo",
+            "abreviatura": "kg"
+        },
+        {
+            "id": 7,
+            "nombre": "Botella",
+            "abreviatura": "bot"
+        },
+        {
+            "id": 8,
+            "nombre": "Paquete",
+            "abreviatura": "paq"
+        },
+        {
+            "id": 9,
+            "nombre": "Tira",
+            "abreviatura": "tir"
+        },
+        {
+            "id": 10,
+            "nombre": "Tubo",
+            "abreviatura": "tubo"
+        }
+    ]
+}

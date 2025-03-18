@@ -1,0 +1,11 @@
+<div class="file-drop-area text-center">
+  <button mat-raised-button color="primary" type="button" >{{titulo}}</button>
+  <br>
+  <span class="ms-2" *ngIf="myFiles.length == 0">{{'o arrastre y suelte el archivo aquí' }}</span>
+  <span class="file-msg" *ngFor="let file of myFiles">
+    <div class="me-2">{{ file.name }}</div>
+  </span>
+  <input class="file-input" type="file" [formControl]="url_imagen" (change)="onSelectFile($event); getFileDetails($event)">
+  <br/>
+  <img *ngIf="!ver"  [src]="url" height="200"> <br/>
+</div>

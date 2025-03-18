@@ -1,0 +1,39 @@
+{
+    "categorias": [
+        {
+            "id": 1,
+            "nombre": "Medicamentos",
+            "descripcion": "Productos médicos de uso interno y externo"
+        },
+        {
+            "id": 2,
+            "nombre": "Alimentos",
+            "descripcion": "Alimentos balanceados y suplementos para mascotas"
+        },
+        {
+            "id": 3,
+            "nombre": "Accesorios",
+            "descripcion": "Juguetes, collares, camas y otros accesorios"
+        },
+        {
+            "id": 4,
+            "nombre": "Higiene",
+            "descripcion": "Productos de limpieza y cuidado personal para mascotas"
+        },
+        {
+            "id": 5,
+            "nombre": "Instrumental Médico",
+            "descripcion": "Herramientas y equipamiento para tratamientos médicos"
+        },
+        {
+            "id": 6,
+            "nombre": "Equipos Médicos",
+            "descripcion": "Equipos de diagnóstico y monitoreo médico"
+        },
+        {
+            "id": 7,
+            "nombre": "Otros Productos Veterinarios",
+            "descripcion": "Productos antiparasitarios y otros tratamientos"
+        }
+    ]
+}
