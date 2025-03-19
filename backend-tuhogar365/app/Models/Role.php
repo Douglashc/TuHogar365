@@ -15,4 +15,9 @@ class Role extends Model
             set: fn($value) => ucfirst($value)
         );
     }
+
+    // Relación con usuarios (Un rol puede tener muchos usuarios)
+    public function users() {
+        return $this->hasMany(User::class, 'rol_id');
+    }
 }

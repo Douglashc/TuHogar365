@@ -23,6 +23,8 @@ return new class extends Migration
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->boolean('habilitado');
+            $table->string('area_trabajo', 100)->nullable();
+            $table->string('foto', 100)->nullable();
             $table->rememberToken();
             
             $table->bigInteger('rol_id')->unsigned();

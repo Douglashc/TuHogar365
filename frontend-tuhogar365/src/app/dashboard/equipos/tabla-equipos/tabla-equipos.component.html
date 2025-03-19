@@ -1,0 +1,63 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Equipos'" [items]="['Inicio']" [active_item]="'Equipos'">
+            </app-breadcrumb>
+        </div>
+
+        <div class="row clearfix">
+
+            <div class="col-12 d-flex justify-content-end mb-3" *ngIf="tokenStorage.getUser().rol?.name === 'administrador'">
+                <button mat-raised-button color="primary" matTooltip="Agregar Equipo">
+                    <mat-icon class="col-white">add</mat-icon>
+                    Agregar Equipo
+                </button>
+            </div>
+
+            <div class="col-md-4" *ngFor="let equipo of equipos">
+                <mat-card class="team-card">
+                    <mat-card-header>
+                        <div class="team-header">
+                            <h5>{{ equipo?.nombre_equipo }}</h5>
+                            <div *ngIf="tokenStorage.getUser().rol?.name === 'administrador'">
+                                <button mat-icon-button>
+                                    <mat-icon style="color: #F5DE6C;">edit</mat-icon>
+                                </button>
+                                <button mat-icon-button>
+                                    <mat-icon style="color: #E62727;">delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="container-lider-info">
+                            <img class="avatar-lider" src="../../../../assets/images/avatar.png" alt="lider">
+                            <div class="team-member">
+                                <strong>{{ equipo?.lider?.nombre_completo }}</strong><br>
+                                <span>{{ equipo?.lider?.email }}</span>
+                            </div>
+                        </div>
+                        <div class="container-stacks">
+                            <div class="container-data-stacks">
+                                <p style="color: #6B7280; font-size: 14px; margin-bottom: 5px;">Miembros del Equipo</p>
+                                <p style="font-size: 24px; font-weight: bold;">{{ equipo?.usuarios.length + 1 || 0 }}</p>
+                            </div>
+                            <div class="container-data-stacks">
+                                <p style="color: #6B7280; font-size: 14px; margin-bottom: 5px;">Proyectos Activos</p>
+                                <p style="font-size: 24px; font-weight: bold;">{{ equipo?.proyectos.length || 0}}</p>
+                            </div>
+                        </div>
+                        <div class="container-progreso">
+                            <div class="d-flex justify-content-between mb-2">
+                                <span>Tareas en Progreso</span>
+                                <span>25/48 Tareas</span>
+                            </div>
+                            <mat-progress-bar mode="determinate" [value]="28"></mat-progress-bar>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

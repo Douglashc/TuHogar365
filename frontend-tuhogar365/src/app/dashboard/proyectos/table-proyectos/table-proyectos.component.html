@@ -1,0 +1,60 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Proyectos'" [items]="['Inicio']" [active_item]="'Proyectos'">
+            </app-breadcrumb>
+        </div>
+
+        <div class="row clearfix">
+
+            <div class="col-12 d-flex justify-content-end mb-3">
+                <button mat-raised-button color="primary" matTooltip="Agregar Proyecto" *ngIf="tokenStorage.getUser().rol?.name === 'administrador'">
+                    <mat-icon class="col-white">add</mat-icon>
+                    Agregar Proyecto
+                </button>
+            </div>
+
+            <div class="col-md-4" *ngFor="let proyecto of proyectos">
+                <mat-card class="team-card">
+                    <mat-card-header>
+                        <div class="team-header">
+                            <h5>{{ proyecto?.nombre_proyecto }}</h5>
+                            <div *ngIf="tokenStorage.getUser().rol?.name === 'administrador'">
+                                <button mat-icon-button>
+                                    <mat-icon style="color: #F5DE6C;">edit</mat-icon>
+                                </button>
+                                <button mat-icon-button>
+                                    <mat-icon style="color: #E62727;">delete</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="container-lider-info">
+                            <div class="color-equipo"></div>
+                            <div class="team-member">
+                                <strong style="color: #69707E;">{{ proyecto?.equipo?.nombre_equipo }}</strong><br>
+                            </div>
+                        </div>
+ 
+                        <div class="container-progreso">
+                            <div class="d-flex justify-content-between mb-2 mt-4">
+                                <span>Progreso</span>
+                                <span>75%</span>
+                            </div>
+                            <mat-progress-bar mode="determinate" [value]="28"></mat-progress-bar>
+                        </div>
+
+                        <div class="container-progreso margen">
+                            <div class="d-flex justify-content-between mb-2 mt-4">
+                                <span>Tareas en Progreso</span>
+                                <span>25/48 Tareas</span>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

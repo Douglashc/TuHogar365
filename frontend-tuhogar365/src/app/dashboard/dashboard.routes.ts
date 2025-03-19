@@ -14,26 +14,43 @@ export const DASHBOARD_ROUTE: Route[] = [
   {
     path: "dashboard1",
     component: Dashboard1Component,
+    canActivate: [RoleGuard],
+    data: { roles: ['administrador', 'lider'] }
   },
   {
     path: "dashboard2",
     component: Dashboard2Component,
   },
   { path: 'usuarios',
-    loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule)
+    loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule),
+    canActivate: [RoleGuard],
+    data: { roles: ['administrador'] }
+  },
+  {
+    path: 'equipos',
+    loadChildren: () => import('./equipos/equipos.module').then(m => m.EquiposModule),
+    canActivate: [RoleGuard],
+    data: { roles: ['administrador', 'lider', 'empleado'] }
+  },
+  {
+    path: 'proyectos',
+    loadChildren: () => import('./proyectos/proyectos.module').then(m => m.ProyectosModule),
+    canActivate: [RoleGuard],
+    data: { roles: ['administrador', 'lider', 'empleado'] }
   },
   {
     path: 'calendario-plazos',
     loadChildren: () => import('./calendario/calendario.module').then(m => m.CalendarioModule),
     canActivate: [RoleGuard],
-    data: { roles: ['administrador', 'empleado'] }
+    data: { roles: ['administrador','lider','empleado'] }
   },
   {
     path: 'tareas',
     loadChildren: () => import('./tareas/tareas.module').then(m => m.TareasModule),
     canActivate: [RoleGuard],
-    data: { roles: ['administrador','empleado'] }
+    data: { roles: ['administrador','lider','empleado'] }
   },
+  
   {
     path: 'clientes',
     loadChildren: () => import('./clientes/clientes.module').then(m => m.ClientesModule)

@@ -13,16 +13,18 @@ return new class extends Migration
     {
         Schema::create('tareas', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id_asigna')->unsigned();
-            $table->bigInteger('user_id_realiza')->unsigned();
+            $table->bigInteger('proyecto_id')->unsigned();
+            $table->bigInteger('user_id_asigna')->unsigned()->nullable();
+            $table->bigInteger('user_id_realiza')->unsigned()->nullable();
             $table->string('titulo');
             $table->text('descripcion');
             $table->date('fecha_inicio')->nullable();
             $table->date('fecha_final')->nullable();
-            $table->boolean('completado')->default(false);
+            $table->enum('estado', ['pendiente', 'en proceso', 'en revision', 'completado'])->default('pendiente');
 
-            $table->foreign('user_id_asigna')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('user_id_realiza')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('proyecto_id')->references('id')->on('proyectos')->onDelete('cascade');
+            $table->foreign('user_id_asigna')->references('id')->on('users')->onDelete('set null');
+            $table->foreign('user_id_realiza')->references('id')->on('users')->onDelete('set null');
             $table->timestamps();
         });
     }

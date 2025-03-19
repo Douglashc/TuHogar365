@@ -20,14 +20,29 @@ class TareaController extends Controller
         try{
             $rolId = Auth::user()->rol_id;
             
-            if($rolId == 1){
-                $tareas = Tarea::with(['userRealiza','userAsigna'])->latest()->get();
-            }else{
-                $idUsuario = Auth::user()->id;
-                $tareas = Tarea::with(['userRealiza','userAsigna'])
-                ->where('user_id_realiza', $idUsuario)
-                ->latest()
-                ->get();
+            $idUsuario = Auth::user()->id;
+
+            if ($rolId == 1) {
+                // Admin: Puede ver todas las tareas
+                $tareas = Tarea::with(['userRealiza', 'userAsigna', 'proyecto'])->latest()->get();
+            } 
+        
+            if ($rolId == 2) {
+                // Líder: Solo puede ver las tareas de los proyectos de sus equipos
+                $tareas = Tarea::with(['userRealiza', 'userAsigna', 'proyecto'])
+                    ->whereHas('proyecto.equipo', function ($query) use ($idUsuario) {
+                        $query->where('lider_id', $idUsuario);
+                    })
+                    ->latest()
+                    ->get();
+            } 
+        
+            if ($rolId == 3) {
+                // Empleado: Solo puede ver las tareas que le han asignado
+                $tareas = Tarea::with(['userRealiza', 'userAsigna', 'proyecto'])
+                    ->where('user_id_realiza', $idUsuario)
+                    ->latest()
+                    ->get();
             }
 
             return response()->json([

@@ -20,12 +20,13 @@ export class TablaTareasComponent implements OnInit, OnDestroy {
   nombreColumnas: string[] = [
     'Nº',
     'Titulo',
-    'Descripcion',
-    'Fecha Inicio',
+    'Proyecto',
+    //'Descripcion',
+    //'Fecha Inicio',
     'Fecha Final',
     'Estado',
     'Asignado',
-    'Registro',
+    //'Registro',
     'Acciones'
   ];
 

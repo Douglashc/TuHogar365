@@ -96,21 +96,27 @@ class User extends Authenticatable
         return $flag;
     }
     
+    // Relación con Rol (Un usuario tiene un rol)
     public function rol() {
-        return $this->belongsTo(Role::class);
+        return $this->belongsTo(Role::class, 'rol_id');
     }
 
-    public function asignarTarea()
+    // Relación con Equipos (Muchos a Muchos)
+    public function equipos() {
+        return $this->belongsToMany(Equipo::class, 'usuario_equipo', 'usuario_id', 'equipo_id');
+    }
+
+    public function asignaTarea()
     {
         return $this->hasMany(Task::class, 'user_id_asigna');
     }
 
-    public function realizarTarea()
+    public function realizaTarea()
     {
         return $this->hasMany(Task::class, 'user_id_realiza');
     }
 
     public function notificacion() {
-        return $this->hasOne(Notificacion::class);
+        return $this->hasMany(Notificacion::class, 'user_id');
     }
 }

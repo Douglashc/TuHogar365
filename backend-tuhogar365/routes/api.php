@@ -60,6 +60,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::apiResources([
         'users' => App\Http\Controllers\UserController::class,
+        'equipos' => App\Http\Controllers\EquipoController::class,
+        'proyectos' => App\Http\Controllers\ProyectoController::class,
         'tareas' => App\Http\Controllers\TareaController::class,
         'notificaciones' => App\Http\Controllers\NotificacionController::class,
         'clientes' => App\Http\Controllers\ClienteController::class,

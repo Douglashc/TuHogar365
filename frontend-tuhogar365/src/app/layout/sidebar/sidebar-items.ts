@@ -69,7 +69,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
-    roles: ['administrador','empleado']
+    roles: ['administrador','lider','empleado']
   },
   {
     path: 'dashboard/calendario-plazos',
@@ -81,7 +81,7 @@ export const ROUTES: RouteInfo[] = [
     badge: '',
     badgeClass: '',
     submenu: [],
-    roles: ['administrador','empleado']
+    roles: ['administrador','lider','empleado']
   },
   /*{
     path: 'dashboard/clientes',
