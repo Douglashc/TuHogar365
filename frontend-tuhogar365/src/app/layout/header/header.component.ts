@@ -20,6 +20,7 @@ import { PusherService } from '@core/service/pusher.service';
 import { WebMaterialModule } from 'app/webmaterial.module';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { LoadingService } from '@core/service/loading.service';
+import { environment } from 'environments/environment';
 import { delay } from 'rxjs';
 
 interface Notifications {
@@ -103,7 +104,7 @@ export class HeaderComponent
 
   ngOnInit() {
     this.config = this.configService.configData;
-    this.userImg = 'assets/images/user/' + this.authService.currentUserValue.img;
+    this.userImg = this.tokenStorage.getUser()?.foto ? environment.imgUrl+'/'+this.tokenStorage.getUser()?.foto : 'assets/images/usuario.png';
     this.docElement = document.documentElement;
 
     this.homePage = 'dashboard/dashboard1';

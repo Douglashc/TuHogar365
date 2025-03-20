@@ -7,7 +7,7 @@ import { CrearUsuariosComponent } from './crear-usuarios/crear-usuarios.componen
 import { WebMaterialModule } from 'app/webmaterial.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
-
+import { FileUploadComponent } from '@shared/components/file-upload/file-upload.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.co
     FormsModule,
     ReactiveFormsModule,
     BreadcrumbComponent,
-    NgClass
+    FileUploadComponent
   ]
 })
 export class UsuariosModule { }

@@ -1,0 +1,236 @@
+.team-card {
+    margin-bottom: 20px;
+  }
+  
+  .team-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .container-lider-info {
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .avatar-lider {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+  }
+  
+  .team-member {
+    margin-left: 15px;
+  }
+  
+  .container-stacks {
+    margin-top: 16px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .container-data-stacks {
+    background-color: #F3F4F6;
+    height: 93px;
+    width: 198px;
+    border-radius: 8px;
+    padding: 15px;
+  }
+  
+  .container-progreso {
+    margin-top: 16px;
+  }
+  
+  .stack-title {
+    color: #6B7280;
+    font-size: 14px;
+    margin-bottom: 5px;
+  }
+  
+  .stack-value {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .row {
+    display: flex;
+    align-items: stretch; /* Hace que los hijos tengan la misma altura */
+  }
+  
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Hace que las tarjetas ocupen todo el alto disponible */
+  }
+  
+  mat-card-content {
+    flex-grow: 1; /* Hace que el contenido se expanda y las tarjetas sean del mismo alto */
+  }
+
+
+  .card {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 8px;
+  }
+  
+
+
+
+  .miembros-equipo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .miembro-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+  }
+  
+  .member-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .name {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .role {
+    font-size: 14px;
+    color: gray;
+    margin: 0;
+  }
+  
+  .email {
+    font-size: 14px;
+    color: gray;
+  }
+
+
+
+
+  //PROYECTOS
+  .project-item {
+    padding: 12px 0;
+    border-bottom: 1px solid #e0e0e0;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .project-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  
+  .project-name {
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .status {
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 12px;
+  }
+  
+  .in-progress {
+    background-color: #ffebcc;
+    color: #b38b00;
+  }
+  
+  .planning {
+    background-color: #e0e0e0;
+    color: #666;
+  }
+  
+  .progress-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .progress-label {
+    font-size: 14px;
+    color: gray;
+  }
+  
+  .progress-bar {
+    width: 80%;
+    height: 6px;
+  }
+
+
+
+  //TAREAS
+
+  .task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #e0e0e0;
+  
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  
+  .task-title {
+    font-weight: bold;
+    flex: 2;
+  }
+  
+  .task-status {
+    font-size: 14px;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-transform: capitalize;
+    flex: 1;
+    text-align: center;
+  }
+  
+  .pending {
+    background-color: #FEE2E2;
+    color: #991B1B;
+  }
+  
+  .in-progress {
+    background-color: #FEF3C7;
+    color: #92400E;
+  }
+  
+  .completed {
+    background-color: #DEF7EC;
+    color: #1E6855;
+  }
+  
+  .task-date {
+    font-size: 14px;
+    color: gray;
+    flex: 1;
+    text-align: right;
+  }

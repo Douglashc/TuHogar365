@@ -2,3 +2,27 @@
 a{
     text-decoration: none;
 }
+
+
+.navbar-header {
+    padding: 10px;
+  }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre logo y texto */
+    text-decoration: none;
+  }
+  
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .logo-text {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #ffffff; /* Ajusta el color según el diseño */
+  }
+  

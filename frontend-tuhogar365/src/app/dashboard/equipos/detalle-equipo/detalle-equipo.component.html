@@ -1,0 +1,142 @@
+<section class="content">
+    <div class="content-block">
+        <div class="block-header">
+            <!-- breadcrumb -->
+            <app-breadcrumb [title]="'Detalle del Equipo'" [items]="['Inicio']" [active_item]="'Detalle del Equipos'">
+            </app-breadcrumb>
+        </div>
+
+        <div class="row clearfix">
+
+            <div class="col-12 d-flex justify-content-between align-items-center mb-3">
+                <div class="d-flex align-items-center">
+                    <button mat-icon-button (click)="goBack()" matTooltip="Regresar">
+                        <mat-icon>arrow_back</mat-icon>
+                    </button>
+                    <h4 class="mb-0 ms-2">{{ equipo?.nombre_equipo }}</h4>
+                </div>
+
+                <button mat-raised-button color="primary" *ngIf="tokenStorage.getUser().rol?.name !== 'empleado'"
+                    matTooltip="Agregar Miembro">
+                    <mat-icon class="col-white">add</mat-icon>
+                    Agregar Miembro
+                </button>
+            </div>
+
+
+            <div class="col-md-6">
+                <mat-card class="team-card">
+                    <mat-card-header>
+                        <div class="team-header">
+                            <h5 style="font-size: 16px;">Lider del Equipo</h5>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="container-lider-info">
+                            <img *ngIf="equipo?.lider?.foto" class="avatar-lider" [src]="url+'/'+equipo?.lider?.foto"
+                                alt="lider">
+                            <img *ngIf="!equipo?.lider?.foto" class="avatar-lider"
+                                src="../../../../assets/images/usuario.png" alt="lider">
+                            <div class="team-member">
+                                <strong>{{ equipo?.lider?.nombre_completo }}</strong><br>
+                                <span>{{ equipo?.lider?.email }}</span>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-6">
+                <mat-card class="team-card">
+                    <mat-card-header>
+                        <div class="team-header">
+                            <h5 style="font-size: 16px;">Estadisticas del Equipo</h5>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="container-stacks">
+                            <div class="container-data-stacks ">
+                                <p class="stack-title">Miembros del Equipo</p>
+                                <p class="stack-value">{{ equipo?.usuarios ? equipo?.usuarios.length + 1 : 0 }}</p>
+                            </div>
+                            <div class="container-data-stacks">
+                                <p class="stack-title">Proyectos</p>
+                                <p class="stack-value">{{ equipo?.proyectos.length || 0 }}</p>
+                            </div>
+                            <div class="container-data-stacks">
+                                <p class="stack-title">Tareas Totales</p>
+                                <p class="stack-value">25</p>
+                            </div>
+                            <div class="container-data-stacks mt-3">
+                                <p class="stack-title">Tareas Completados</p>
+                                <p class="stack-value">15</p>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-12 mt-4 mb-4">
+                <mat-card class="team-card">
+                    <mat-card-header>
+                        <div class="team-header">
+                            <h5 style="font-size: 16px;">Miembros del Equipo</h5>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="miembros-equipo" *ngFor="let miembro of miembros_equipo">
+                            <div class="miembro-info">
+                                <img [src]="url+'/'+miembro?.foto" class="avatar" />
+                                <div class="member-details">
+                                    <p class="name">{{ miembro?.nombre_completo }}</p>
+                                    <p class="role">{{ miembro?.area_trabajo }}</p>
+                                </div>
+                            </div>
+                            <p class="email">{{ miembro?.email }}</p>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <mat-card class="team-card">
+                    <mat-card-header>
+                        <div class="team-header">
+                            <h5 style="font-size: 16px;">Proyectos</h5>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="project-item" *ngFor="let proyecto of proyectos_equipo">
+                            <div class="project-info">
+                                <p class="project-name">{{ proyecto?.nombre_proyecto }}</p>
+                                <span class="status" [ngClass]="proyecto?.estado">{{ proyecto?.estado }}</span>
+                            </div>
+                            <div class="progress-section">
+                                <span class="progress-label">75%</span>
+                                <mat-progress-bar [color]="'primary'" [mode]="'determinate'" [value]="75"
+                                    class="progress-bar"></mat-progress-bar>
+                            </div>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+
+            <div class="col-md-6 mb-4">
+                <mat-card class="team-card">
+                    <mat-card-header>
+                        <div class="team-header">
+                            <h5 style="font-size: 16px;">Tareas Recientes del Equipo</h5>
+                        </div>
+                    </mat-card-header>
+                    <mat-card-content>
+                        <div class="task-item" *ngFor="let tarea of tareas_resientes">
+                            <span class="task-title">{{ tarea?.titulo }}</span>
+                            <span class="task-status" [ngClass]="getStatusClass(tarea?.estado)">{{ tarea?.estado }}</span>
+                            <span class="task-date">{{ tarea.fecha_final | date:'dd/MM/yyyy' }}</span>
+                        </div>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+        </div>
+    </div>
+</section>

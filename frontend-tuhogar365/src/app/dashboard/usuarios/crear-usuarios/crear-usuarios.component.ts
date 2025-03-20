@@ -17,6 +17,12 @@ export class CrearUsuariosComponent implements OnInit {
   roles: any;
   submitted = false;
   loading = false;
+  imagen: any;
+  area_trabajos = [
+    { area: 'Gestion' },
+    { area: 'Direccion' },
+    { area: 'Operaciones' }
+  ];
 
   constructor(
     public dialogRef: MatDialogRef<CrearUsuariosComponent>,
@@ -50,6 +56,8 @@ export class CrearUsuariosComponent implements OnInit {
         ci: data.ci,
         celular: data.celular,
         rol_id: data.rol_id,
+        area_trabajo: data?.area_trabajo,
+        foto: data?.foto
       })
 
     })
@@ -78,17 +86,44 @@ export class CrearUsuariosComponent implements OnInit {
           Validators.pattern('[0-9]*')
         ]
       ],
+      area_trabajo: [''],
+      foto: [''],
       rol_id: ['', Validators.required],
     })
+  }
+
+  agregarFoto(data: any) {
+    this.form.get('foto').setValue(data.url);
+    this.imagen = data.file;
+    console.log(data)
   }
 
   registerUser() {
     this.submitted = true;
     this.loading = true;
 
+    const formData = new FormData()
+    formData.append("username", this.form.controls['username'].value);
+    formData.append("password", this.form.controls['password'].value);
+    formData.append("email", this.form.controls['email'].value);
+    formData.append("nombres", this.form.controls['nombres'].value);
+    formData.append("apellidos", this.form.controls['apellidos'].value);
+    formData.append("ci", this.form.controls['ci'].value);
+    formData.append("celular", this.form.controls['celular'].value);
+    formData.append("area_trabajo", this.form.controls['area_trabajo'].value);
+    formData.append("rol_id", this.form.controls['rol_id'].value);
+
+    if (this.imagen) {
+      console.log(this.imagen);
+      formData.append('foto', this.imagen);
+    } else {
+      formData.append('foto', '');
+    }
+
     if (this.data.estado === true) {
+      formData.append("_method", "PUT");
       this.userService
-        .update(this.data.id, this.form.value)
+        .updatePost(this.data.id, formData)
         .pipe(
           finalize(() => {
             this.form.markAsPristine();
@@ -118,7 +153,7 @@ export class CrearUsuariosComponent implements OnInit {
         );
     } else {
       this.userService
-      .create(this.form.value)
+      .create(formData)
       .pipe(
         finalize(() => {
           this.form.markAsPristine();

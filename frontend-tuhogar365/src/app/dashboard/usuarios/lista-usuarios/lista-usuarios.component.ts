@@ -4,6 +4,7 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { UserService } from '@core/service/user.service';
 import { CrearUsuariosComponent } from '../crear-usuarios/crear-usuarios.component';
+import { environment } from 'environments/environment';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -15,6 +16,7 @@ export class ListaUsuariosComponent implements OnInit {
 
   nombreColumnas: string[] = [
     'Nº',
+    'Foto',
     'Nombre Completo',
     'Nombre de Usuario',
     'Email',
@@ -22,6 +24,8 @@ export class ListaUsuariosComponent implements OnInit {
     'Rol',
     'Acciones'
   ];
+
+  url = environment.imgUrl;
 
   paginado!: MatTableDataSource<any>;
 
@@ -40,6 +44,7 @@ export class ListaUsuariosComponent implements OnInit {
 
   listaUsuarios() {
     this.userService.getAll().subscribe(data=>{
+      console.log("USUARIOS: ", data);
       this.paginado = new MatTableDataSource<any>(data);
       this.paginado.paginator = this.paginator;  
     })

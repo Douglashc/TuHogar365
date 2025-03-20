@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { EquiposRoutingModule } from './equipos-routing.module';
 
 import { TablaEquiposComponent } from './tabla-equipos/tabla-equipos.component';
+import { DetalleEquipoComponent } from './detalle-equipo/detalle-equipo.component';
 
 import { BreadcrumbComponent } from '@shared/components/breadcrumb/breadcrumb.component';
 import { WebMaterialModule } from 'app/webmaterial.module';
@@ -12,7 +13,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
-    TablaEquiposComponent
+    TablaEquiposComponent,
+    DetalleEquipoComponent
   ],
   imports: [
     CommonModule,

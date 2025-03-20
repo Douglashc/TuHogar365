@@ -9,6 +9,13 @@
         </li>
       </ul>
       <ul class="float-start navbar-nav navbar-left">
+        <!-- Full Screen Button -->
+        <li class="fullscreen">
+          <button mat-icon-button class="nav-notification-icons" (click)="callFullscreen()">
+            <app-feather-icons [icon]="'maximize'" [class]="'header-icon'"></app-feather-icons>
+          </button>
+          Expandir Vista
+        </li>
         <!-- <li class="nav-item btnAppList" ngbDropdown>
           <button mat-icon-button [matMenuTriggerFor]="appDropdownMenu" class="nav-notification-icons">
             <app-feather-icons [icon]="'grid'" [class]="'header-icon'"></app-feather-icons>
@@ -67,12 +74,11 @@
       <ul class="nav navbar-nav navbar-right">
 
         <!-- Full Screen Button -->
-        <li class="fullscreen">
-          {{ tokenStorage.getUser().rol?.display_name }}
+        <!--li class="fullscreen">
           <button mat-icon-button class="nav-notification-icons" (click)="callFullscreen()">
             <app-feather-icons [icon]="'maximize'" [class]="'header-icon'"></app-feather-icons>
           </button>
-        </li>
+        </li-->
         <!-- #END# Full Screen Button -->
         <!-- <li class="nav-item">
                           <button mat-icon-button [matMenuTriggerFor]="languagemenu" class="lang-dropdown nav-notification-icons"> @if (flagvalue !== undefined) {
@@ -96,13 +102,16 @@
                             </li> -->
         <!-- #START# Notifications-->
         <li>
+          <label for="" style="background-color: #0D8784; padding: 5px; border-radius: 10px; color: white; width: 150px; text-align: center;">
+            {{ tokenStorage.getUser().rol?.display_name }}
+          </label>
           <button mat-icon-button [matMenuTriggerFor]="notificationMenu" class="nav-notification-icons">
             <app-feather-icons [icon]="'bell'" [class]="'header-icon'"></app-feather-icons>
           </button>
           <mat-menu #notificationMenu="matMenu" class="nfc-menu">
             <div class="nfc-header">
-              <h5 class="mb-0">Notitications</h5>
-              <a class="nfc-mark-as-read">Mark all as read</a>
+              <h5 class="mb-0">Notificaciones</h5>
+              <a class="nfc-mark-as-read">Marcar Todo Leido</a>
             </div>
             <div class="nfc-dropdown">
               <ng-scrollbar style="height: 350px" visibility="hover">
@@ -110,7 +119,8 @@
                   <div class="menu">
                     <div>
                       @for (notification of notifications; track notification) {
-                      <button mat-menu-item onClick="return false;" [ngClass]="notification?.read ? 'msg-read' : 'msg-unread'">
+                      <button mat-menu-item onClick="return false;"
+                        [ngClass]="notification?.read ? 'msg-read' : 'msg-unread'">
                         <span class="menu-info">
                           <span class="menu-title">{{notification.mensaje}}</span>
                           <span class="menu-desc mt-2">
@@ -128,8 +138,7 @@
               </ng-scrollbar>
             </div>
             <div class="nfc-footer">
-              <a class="nfc-read-all">Read
-                All Notifications</a>
+              <a class="nfc-read-all">Leer Todas</a>
             </div>
           </mat-menu>
         </li>
@@ -138,12 +147,8 @@
         <li class="nav-item user_profile">
           <button mat-button [matMenuTriggerFor]="profilemenu">
             <div class="chip dropdown-toggle" ngbDropdownToggle class="">
-              <span>{{tokenStorage.getUser().nombre_completo}}</span>
-              <span class="d-lg-none d-block  " style="font-size: 10px;">
-                <i class="fas fa-store me-2 "></i>
-                {{tokenStorage.getUser()?.sucursal?.nombre}}
-              </span>
-              <img src="./assets/images/usuario.png" class="user_img d-lg-block d-none " width="25" height="25"
+              <span>{{tokenStorage.getUser().nombre_completo}} </span>
+              <img [src]="userImg" class="user_img d-lg-block d-none " width="25" height="25"
                 alt="User">
             </div>
           </button>
@@ -176,7 +181,9 @@
                                 color="primary"
                                 mode="indeterminate">
                               </mat-progress-spinner> -->
-        <mat-progress-bar mode="indeterminate" color="accent"></mat-progress-bar>
+        <mat-progress-bar mode="indeterminate"
+                              style="--mdc-linear-progress-active-indicator-color: #0D8784;"
+        ></mat-progress-bar>
       </div>
     </div>
   </div>

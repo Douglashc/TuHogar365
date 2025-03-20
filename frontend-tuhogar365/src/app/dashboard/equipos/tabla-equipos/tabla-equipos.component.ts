@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { EquipoService } from '@core/service/equipos.service';
+import { Router } from '@angular/router';
 import { TokenStorageService } from '@core/authentication/token-storage.service';
-
+import { environment } from 'environments/environment';
 @Component({
   selector: 'app-tabla-equipos',
   templateUrl: './tabla-equipos.component.html',
@@ -10,9 +11,11 @@ import { TokenStorageService } from '@core/authentication/token-storage.service'
 export class TablaEquiposComponent implements OnInit {
 
   public equipos: any = [];
+  public url = environment.imgUrl;
 
   constructor(
     public tokenStorage: TokenStorageService,
+    private router: Router,
     private equipoService: EquipoService
   ) {}
 
@@ -30,6 +33,10 @@ export class TablaEquiposComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  public verDetalle(id: any) {
+    this.router.navigate(['dashboard/equipos/detalle-equipo', id]);
   }
 
 }

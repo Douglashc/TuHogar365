@@ -23,6 +23,15 @@ class Equipo extends Model
 
     // Relación con Proyectos (Un equipo puede tener varios proyectos)
     public function proyectos() {
-        return $this->hasMany(Proyecto::class, 'equipo_id');
+        return $this->hasMany(Proyecto::class, 'equipo_id')->with(['tareas' => function ($query) {
+            $query->orderBy('created_at', 'desc')->limit(5);
+        }]);
+    }
+
+    public function tareasRecientes()
+    {
+        return $this->hasManyThrough(Tarea::class, Proyecto::class, 'equipo_id', 'proyecto_id')
+            ->orderBy('created_at', 'desc')
+            ->limit(3);
     }
 }

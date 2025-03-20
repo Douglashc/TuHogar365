@@ -99,4 +99,32 @@ class EquipoController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * Display the specified resource.
+     */
+    public function show($id)
+    {
+        try{
+            $rolId = Auth::user()->rol_id;
+
+            $equipo = Equipo::with(['lider','usuarios','proyectos','tareasRecientes'])
+                ->where('id', $id)
+                ->first();
+
+            return response()->json([
+                'status' => 'Success',
+                'message' => 'Dato obtenido con exito',
+                'data' => $equipo,
+                'usuario' => $rolId
+            ], 200);
+
+        }catch(\Exception $e) {
+            return response()->json([
+                'status' => 'Error',
+                'message' => 'Error al obtener los dato',
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 }

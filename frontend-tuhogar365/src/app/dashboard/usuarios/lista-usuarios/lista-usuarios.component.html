@@ -48,6 +48,14 @@
                     {{this.paginator.pageIndex == 0 ? i + 1 : 1 + i + this.paginator.pageIndex * this.paginator.pageSize}}
                   </td>
                 </ng-container>
+                <ng-container matColumnDef="Foto">
+                  <th mat-header-cell *matHeaderCellDef> Foto </th>
+                  <td mat-cell *matCellDef="let element"> 
+                    <img *ngIf="element?.foto" [src]="url+'/'+element?.foto" alt=""  
+                      style="width: 48px; height: 48px; border-radius: 50%;"
+                    > 
+                  </td>
+                </ng-container>
                 <ng-container matColumnDef="Nombre Completo">
                   <th mat-header-cell *matHeaderCellDef> Nombre Completo </th>
                   <td mat-cell *matCellDef="let element"> {{element.nombre_completo}} </td>

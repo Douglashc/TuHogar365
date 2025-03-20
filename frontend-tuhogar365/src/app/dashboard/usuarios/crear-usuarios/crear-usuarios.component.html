@@ -94,7 +94,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-12 mb-2">
+        <div class="col-xl-6 mb-2">
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>Roles</mat-label>
             <mat-select formControlName="rol_id">
@@ -104,6 +104,23 @@
               }
             </mat-select>
           </mat-form-field>
+        </div>
+        <div class="col-xl-6 mb-2">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>Area Trabajo</mat-label>
+            <mat-select formControlName="area_trabajo">
+              <mat-option value="">Area de trabajo</mat-option>
+              @for (area_trabajo of area_trabajos; track area_trabajo) {
+              <mat-option [value]="area_trabajo?.area">{{area_trabajo?.area}}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+          <label for="foto" class="form-label">Subir Foto</label>
+          <app-file-upload formControlName="foto" titulo="Cargar foto" (foto)="agregarFoto($event)"></app-file-upload>
         </div>
       </div>
       <div class="row">

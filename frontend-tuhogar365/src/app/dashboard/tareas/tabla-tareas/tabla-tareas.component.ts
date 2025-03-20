@@ -90,6 +90,21 @@ export class TablaTareasComponent implements OnInit, OnDestroy {
     this.paginado.data = [...this.tareas]; // Actualiza la data de MatTableDataSource
   }
 
+  getEstadoEstilos(estado: string): any {
+    const estilos: { [key: string]: any } = {
+      'en progreso': { background: '#FEF3C7', color: '#92400E' },
+      'pendiente': { background: '#FEE2E2', color: '#991B1B' },
+      'completado': { background: '#DEF7EC', color: '#1E6855' }
+    };
+    
+    return {
+      ...estilos[estado] || {},
+      'border-radius': '10px',
+      'padding': '8px',
+      'display': 'inline-block'
+    };
+  }
+
   create() {
     const dialogRef = this.dialog.open(FormCrearTareaComponent, {
       data: {

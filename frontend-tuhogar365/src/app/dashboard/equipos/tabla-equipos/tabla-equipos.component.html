@@ -16,23 +16,24 @@
             </div>
 
             <div class="col-md-4" *ngFor="let equipo of equipos">
-                <mat-card class="team-card">
+                <mat-card class="team-card" (click)="verDetalle(equipo.id)" matTooltip="Ver Detalle">
                     <mat-card-header>
                         <div class="team-header">
                             <h5>{{ equipo?.nombre_equipo }}</h5>
                             <div *ngIf="tokenStorage.getUser().rol?.name === 'administrador'">
                                 <button mat-icon-button>
-                                    <mat-icon style="color: #F5DE6C;">edit</mat-icon>
+                                    <mat-icon matTooltip="Editar Equipo" style="color: #F5DE6C;">edit</mat-icon>
                                 </button>
                                 <button mat-icon-button>
-                                    <mat-icon style="color: #E62727;">delete</mat-icon>
+                                    <mat-icon matTooltip="Eliminar Equipo" style="color: #E62727;">delete</mat-icon>
                                 </button>
                             </div>
                         </div>
                     </mat-card-header>
                     <mat-card-content>
                         <div class="container-lider-info">
-                            <img class="avatar-lider" src="../../../../assets/images/avatar.png" alt="lider">
+                            <img *ngIf="equipo?.lider?.foto" class="avatar-lider" [src]="url+'/'+equipo?.lider?.foto" alt="lider">
+                            <img *ngIf="!equipo?.lider?.foto" class="avatar-lider" src="../../../../assets/images/usuario.png" alt="lider">
                             <div class="team-member">
                                 <strong>{{ equipo?.lider?.nombre_completo }}</strong><br>
                                 <span>{{ equipo?.lider?.email }}</span>
@@ -40,12 +41,12 @@
                         </div>
                         <div class="container-stacks">
                             <div class="container-data-stacks">
-                                <p style="color: #6B7280; font-size: 14px; margin-bottom: 5px;">Miembros del Equipo</p>
-                                <p style="font-size: 24px; font-weight: bold;">{{ equipo?.usuarios.length + 1 || 0 }}</p>
+                                <p class="stack-title">Miembros del Equipo</p>
+                                <p class="stack-value">{{ equipo?.usuarios.length + 1 || 0 }}</p>
                             </div>
                             <div class="container-data-stacks">
-                                <p style="color: #6B7280; font-size: 14px; margin-bottom: 5px;">Proyectos Activos</p>
-                                <p style="font-size: 24px; font-weight: bold;">{{ equipo?.proyectos.length || 0}}</p>
+                                <p class="stack-title">Proyectos Activos</p>
+                                <p class="stack-value">{{ equipo?.proyectos.length || 0}}</p>
                             </div>
                         </div>
                         <div class="container-progreso">
@@ -58,6 +59,7 @@
                     </mat-card-content>
                 </mat-card>
             </div>
+            
         </div>
     </div>
 </section>

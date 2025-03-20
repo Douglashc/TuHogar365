@@ -30,7 +30,8 @@
                                 <ul class="tbl-export-btn">
                                     <li class="tbl-header-btn">
                                         <div class="m-l-10">
-                                            <button mat-raised-button color="primary" matTooltip="Agregar Tarea" (click)="create()">
+                                            <button mat-raised-button color="primary" matTooltip="Agregar Tarea"
+                                                (click)="create()">
                                                 <mat-icon class="col-white">add</mat-icon>
                                                 Agregar Tarea
                                             </button>
@@ -70,11 +71,16 @@
                                 </ng-container>
                                 <ng-container matColumnDef="Estado">
                                     <th mat-header-cell *matHeaderCellDef> Estado </th>
-                                    <td mat-cell *matCellDef="let element"> {{element?.estado }} </td>
+                                    <td mat-cell *matCellDef="let element">
+                                        <div [ngStyle]="getEstadoEstilos(element?.estado)">
+                                            {{ element?.estado | titlecase }}
+                                        </div>
+                                    </td>
                                 </ng-container>
                                 <ng-container matColumnDef="Asignado">
                                     <th mat-header-cell *matHeaderCellDef> Asignado </th>
-                                    <td mat-cell *matCellDef="let element"> {{element?.user_realiza?.nombre_completo}} </td>
+                                    <td mat-cell *matCellDef="let element"> {{element?.user_realiza?.nombre_completo}}
+                                    </td>
                                 </ng-container>
                                 <!--ng-container matColumnDef="Registro">
                                     <th mat-header-cell *matHeaderCellDef> Registro </th>
@@ -83,17 +89,17 @@
                                 <ng-container matColumnDef="Acciones">
                                     <th mat-header-cell *matHeaderCellDef> Acciones </th>
                                     <td mat-cell *matCellDef="let element">
-                                        <button mat-icon-button class="me-1"
-                                            style="color: #0D8784;"
-                                            (click)="editarTarea(element?.id)" >
+                                        <button mat-icon-button class="me-1" style="color: #0D8784;"
+                                            (click)="editarTarea(element?.id)">
                                             <mat-icon matSuffix>info</mat-icon>
                                         </button>
-                                        <button mat-icon-button class="me-1" *ngIf="tokenStorage.getUser()?.rol?.name !== 'empleado'"
-                                            style="color: #F5DE6C;"
-                                            (click)="editarTarea(element?.id)" >
+                                        <button mat-icon-button class="me-1"
+                                            *ngIf="tokenStorage.getUser()?.rol?.name !== 'empleado'"
+                                            style="color: #F5DE6C;" (click)="editarTarea(element?.id)">
                                             <mat-icon matSuffix>mode</mat-icon>
                                         </button>
-                                        <button mat-icon-button color="warn" *ngIf="tokenStorage.getUser()?.rol?.name !== 'empleado'" 
+                                        <button mat-icon-button color="warn"
+                                            *ngIf="tokenStorage.getUser()?.rol?.name !== 'empleado'"
                                             (click)="deleteCliente(element.id)">
                                             <mat-icon style="color: #E62727;" matSuffix>delete</mat-icon>
                                         </button>

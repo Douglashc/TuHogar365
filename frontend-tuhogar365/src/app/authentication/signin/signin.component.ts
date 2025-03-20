@@ -71,13 +71,13 @@ export class SigninComponent
           })
         )
         .subscribe(
-          (res:any) => {
+          (res: any) => {
             if (res) {
               if (res) {
                 this.credentials = res.data;
                 this.tokenStorage.saveToken(this.credentials.token);
                 this.tokenStorage.saveUser(this.credentials.user);
-                
+
                 if (this.credentials.token) {
                   Swal.fire({
                     position: 'top-right',
@@ -86,7 +86,7 @@ export class SigninComponent
                     showConfirmButton: false,
                     timer: 1500
                   });
-                  this.router.navigate(['/dashboard/calendario-plazos']);
+                  this.validarRolUsuario();
                 }
               } else {
                 this.error = 'Invalid Login';
@@ -95,9 +95,9 @@ export class SigninComponent
               this.error = 'Invalid Login';
             }
           },
-          (error:any) => {
+          (error: any) => {
             console.log(error);
-            
+
             this.error = error.error;
             Swal.fire({
               position: 'top-right',
@@ -110,6 +110,22 @@ export class SigninComponent
             this.loading = false;
           },
         );
+    }
+  }
+
+  validarRolUsuario() {
+    const tipoRol = this.tokenStorage.getUser()?.rol?.name;
+    
+    if(tipoRol === 'administrador'){
+      this.router.navigate(['/dashboard/dashboard1']);
+    }
+
+    if(tipoRol === 'lider') {
+      this.router.navigate(['/dashboard/dashboard1']);
+    }
+
+    if(tipoRol === 'empleado') {
+      this.router.navigate(['/dashboard/calendario-plazos']);
     }
   }
 }
