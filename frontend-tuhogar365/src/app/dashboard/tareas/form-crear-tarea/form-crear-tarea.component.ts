@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { UserService } from '@core/service/user.service';
+import { EquipoService } from '@core/service/equipos.service';
 import { TareaService } from '@core/service/tarea.service';
 import { DatePipe } from '@angular/common';
 import { finalize } from 'rxjs';
@@ -17,6 +18,10 @@ export class FormCrearTareaComponent implements OnInit {
   form!: FormGroup;
   submitted = false;
   loading = false;
+
+  equipos: any;
+  proyectos: any;
+
   usuarios: any;
   tarea: any;
 
@@ -24,6 +29,7 @@ export class FormCrearTareaComponent implements OnInit {
     private datePipe: DatePipe,
     public dialogRef: MatDialogRef<FormCrearTareaComponent>,
     private fb: FormBuilder,
+    private equiposService: EquipoService,
     private usuarioService: UserService,
     private tareaService: TareaService,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -36,7 +42,14 @@ export class FormCrearTareaComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.listarUsuarios();
+    this.listarEquipos();
+    
+    this.form.valueChanges.subscribe(data => {
+      console.log("ID TEAM: ", data?.equipo_id);
+      this.listarProyectos(data?.equipo_id);
+      this.listarUsuariosEquipo(data?.equipo_id);
+    });
+    
     if (this.data.estado === true) {
       this.getById();
     }
@@ -58,17 +71,44 @@ export class FormCrearTareaComponent implements OnInit {
       descripcion: ['', Validators.required],
       fecha_inicio: ['', Validators.required],
       fecha_final: ['', Validators.required],
+      equipo_id: ['', Validators.required],
+      proyecto_id: ['', Validators.required],
       user_id_realiza: ['', Validators.required]
     });
   }
 
-  listarUsuarios() {
+  listarEquipos() {
+    this.equiposService.getAll().subscribe(
+      data => {
+        console.log("EQUIPOS: ", data);
+        this.equipos = data?.data;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  listarProyectos(equipo_id){
+    const equipo = this.equipos.filter(equipo => equipo?.id === equipo_id);
+    this.proyectos = equipo[0]?.proyectos;
+    console.log("PROYECTOS EQUIPO: ", this.proyectos);
+  }   
+
+  listarUsuariosEquipo(equipo_id) {
+    const equipo = this.equipos.filter(equipo => equipo?.id === equipo_id);
+    console.log("USUARIOS EQUIPO: ", equipo[0]);
+    this.usuarios = equipo[0]?.usuarios;
+    this.usuarios.push(equipo[0]?.lider);
+  }
+
+  /*listarUsuarios() {
     // Cargar los periodos desde un servicio
     this.usuarioService.getAll().subscribe(data => {
       console.log("usuarios: ", data);
       this.usuarios = data;
     });
-  }
+  }*/
 
   registrarTarea() {
     

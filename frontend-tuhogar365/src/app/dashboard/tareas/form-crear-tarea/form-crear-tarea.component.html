@@ -34,7 +34,7 @@
             </div>
 
             <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Fecha Inicio</mat-label>
                         <input matInput [matDatepicker]="picker" formControlName="fecha_inicio">
@@ -42,10 +42,7 @@
                         <mat-datepicker #picker></mat-datepicker>
                     </mat-form-field>
                 </div>
-            </div>
-            
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">
                         <mat-label>Fecha Fin</mat-label>
                         <input matInput [matDatepicker]="picker1" formControlName="fecha_final">
@@ -55,6 +52,38 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Equipo</mat-label>
+                        <mat-select formControlName="equipo_id" required>
+                            <mat-option *ngFor="let equipo of equipos" [value]="equipo?.id">
+                                {{ equipo?.nombre_equipo }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('equipo_id')?.hasError('required')">
+                            Seleccione el equipo.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
+                    <mat-form-field class="example-full-width" appearance="outline">
+                        <mat-label>Proyecto</mat-label>
+                        <mat-select formControlName="proyecto_id" required>
+                            <mat-option *ngFor="let proyecto of proyectos" [value]="proyecto?.id">
+                                {{ proyecto?.nombre_proyecto }}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="form.get('proyecto_id')?.hasError('required')">
+                            Seleccione el proyecto.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            
             <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 mb-2">
                     <mat-form-field class="example-full-width" appearance="outline">

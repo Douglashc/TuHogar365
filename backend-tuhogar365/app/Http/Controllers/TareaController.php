@@ -74,7 +74,8 @@ class TareaController extends Controller
                 'user_id_realiza' => $request->user_id_realiza,
                 'user_id_asigna' => Auth::user()->id,
                 'fecha_inicio' => $request->fecha_inicio,
-                'fecha_final' => $request->fecha_final
+                'fecha_final' => $request->fecha_final,
+                'proyecto_id' => $request->proyecto_id
             ]);
 
             $tarea->load(['userRealiza', 'userAsigna']);

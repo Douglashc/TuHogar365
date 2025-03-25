@@ -92,7 +92,7 @@ export class TablaTareasComponent implements OnInit, OnDestroy {
 
   getEstadoEstilos(estado: string): any {
     const estilos: { [key: string]: any } = {
-      'en progreso': { background: '#FEF3C7', color: '#92400E' },
+      'en proceso': { background: '#FEF3C7', color: '#92400E' },
       'pendiente': { background: '#FEE2E2', color: '#991B1B' },
       'completado': { background: '#DEF7EC', color: '#1E6855' }
     };

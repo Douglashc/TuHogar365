@@ -22,11 +22,11 @@ class EquipoController extends Controller
             $idUsuario = Auth::user()->id;
             
             if($rolId == 1){
-                $equipos = Equipo::with(['lider','usuarios','proyectos'])->latest()->get();
+                $equipos = Equipo::with(['lider','usuarios','proyectos','totalTareasEquipo','tareasCompletadasEquipo'])->latest()->get();
             }
 
             if($rolId == 2) {
-                $equipos = Equipo::with(['lider','usuarios','proyectos'])
+                $equipos = Equipo::with(['lider','usuarios','proyectos','totalTareasEquipo','tareasCompletadasEquipo'])
                 ->where('lider_id', $idUsuario)
                 ->latest()
                 ->get();
@@ -34,7 +34,7 @@ class EquipoController extends Controller
 
             if($rolId == 3) {
                 // Empleado: Solo puede ver los equipos donde pertenece
-                $equipos = Equipo::with(['lider', 'usuarios', 'proyectos'])
+                $equipos = Equipo::with(['lider', 'usuarios', 'proyectos','totalTareasEquipo','tareasCompletadasEquipo'])
                     ->whereHas('usuarios', function ($query) use ($idUsuario) {
                         $query->where('usuario_id', $idUsuario);
                     })
@@ -108,7 +108,7 @@ class EquipoController extends Controller
         try{
             $rolId = Auth::user()->rol_id;
 
-            $equipo = Equipo::with(['lider','usuarios','proyectos','tareasRecientes'])
+            $equipo = Equipo::with(['lider','usuarios','proyectos','tareasRecientes','totalTareasEquipo','tareasCompletadasEquipo'])
                 ->where('id', $id)
                 ->first();
 

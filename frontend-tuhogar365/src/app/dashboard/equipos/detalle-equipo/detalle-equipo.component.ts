@@ -13,6 +13,8 @@ export class DetalleEquipoComponent implements OnInit {
 
   public equipoId: any;
   public equipo: any;
+  public total_tareas: any
+  public tareas_completadas: any;
   public miembros_equipo: any;
   public proyectos_equipo: any;
   public tareas_resientes: any;
@@ -37,6 +39,8 @@ export class DetalleEquipoComponent implements OnInit {
       data => {
         console.log("EQUIPO: ", data);
         this.equipo = data?.data;
+        this.total_tareas = data?.data?.total_tareas_equipo.length;
+        this.tareas_completadas = data?.data?.tareas_completadas_equipo.length;
         this.miembros_equipo = data?.data?.usuarios;
         this.proyectos_equipo = data?.data?.proyectos;
         this.tareas_resientes = data?.data?.tareas_recientes;
@@ -52,7 +56,7 @@ export class DetalleEquipoComponent implements OnInit {
     switch (estado) {
       case 'pendiente':
         return 'pending';
-      case 'en progreso':
+      case 'en proceso':
         return 'in-progress';
       case 'completado':
         return 'completed';

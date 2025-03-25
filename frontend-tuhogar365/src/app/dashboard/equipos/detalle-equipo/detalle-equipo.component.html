@@ -65,11 +65,11 @@
                             </div>
                             <div class="container-data-stacks">
                                 <p class="stack-title">Tareas Totales</p>
-                                <p class="stack-value">25</p>
+                                <p class="stack-value">{{ total_tareas || 0 }}</p>
                             </div>
                             <div class="container-data-stacks mt-3">
                                 <p class="stack-title">Tareas Completados</p>
-                                <p class="stack-value">15</p>
+                                <p class="stack-value">{{ tareas_completadas || 0 }}</p>
                             </div>
                         </div>
                     </mat-card-content>

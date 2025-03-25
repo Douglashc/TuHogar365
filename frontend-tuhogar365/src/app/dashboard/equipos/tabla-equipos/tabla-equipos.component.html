@@ -51,10 +51,12 @@
                         </div>
                         <div class="container-progreso">
                             <div class="d-flex justify-content-between mb-2">
-                                <span>Tareas en Progreso</span>
-                                <span>25/48 Tareas</span>
+                                <span>Progreso de Tareas</span>
+                                <span>{{ equipo?.tareas_completadas_equipo.length }}/{{ equipo?.total_tareas_equipo.length }} Tareas</span>
                             </div>
-                            <mat-progress-bar mode="determinate" [value]="28"></mat-progress-bar>
+                            <mat-progress-bar mode="determinate" 
+                                [value]="(equipo?.tareas_completadas_equipo.length / equipo?.total_tareas_equipo.length) * 100 || 0">
+                            </mat-progress-bar>
                         </div>
                     </mat-card-content>
                 </mat-card>
